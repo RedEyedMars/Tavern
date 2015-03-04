@@ -1,0 +1,34 @@
+##Name
+Medic;
+
+##Attribute Requirements
+intellect>10,patience>15;
+
+##Skill Requirements
+Kindhearted,
+HealOne;
+
+##Behaviours
+Protect HealOther;
+
+##Factoring Events
+PartyMemberKill:
+0.2f,
+PartyMemberWounded:
+0.8f,
+UseSkill:
+ev.skill is a HealOneSkill
+	1.2f
+ev.skill is a HealManySkill
+	1.2f
+1f;
+
+##Evaluating Behaviours
+Protect:
+calculate 1-hero.party.attributeWithout_hp_Self/hero.party.attributeWithout_maxHp_Self,
+
+Heal:
+calculate hero.party.countByConditionWithout_...
+	if(hero.attribute_hp/hero.attribute_maxHp<0.25)_...
+	Self...
+/hero.party.size_minus_1

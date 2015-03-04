@@ -1,0 +1,44 @@
+##Name
+Hunter;
+
+##Attribute Requirements
+strength>10,
+patience>10,
+eyeSight>10,
+corwardess<5;
+
+##Skill Requirements
+!Kindhearted,
+Weapon Wielding,
+Tracking;
+
+##Behaviours
+Hunt Attack;
+
+##Factoring Events
+MonsterKill:
+1.2,
+
+UseSkill:
+ev.skill is a TrackingSkill
+	1.1
+1.0;
+
+##Evaluating Behaviour generators
+Hunt:
+hero.quest is null
+	0.0
+hero.quest.type is HuntOne
+	hero.quest.boolean_targetFound
+		0.2
+	1.2
+hero.quest.type is HuntMany
+	0.9
+hero.quest.boolean_targetFound
+	0.2
+0.8,
+
+Attack:
+hero.quest is null
+	0.5
+0.75
